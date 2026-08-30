@@ -265,6 +265,31 @@ Each scene can play a single audio file (MP3 / M4A / OGG / WAV — anything `HTM
 
 **Global mute** — the transport bar has a **mute** checkbox that overrides all scene audio without editing the script.
 
+**Producing narration** — the bundled `audio/*.mp3` files were made with the [Kokoro TTS](https://github.com/geekychris/kokoro_runtime) local speech server (voice `af_bella`). Two helpers live in `scripts/`:
+
+- `./scripts/install-tts.sh` — installs and starts the Kokoro runtime (delegates to its upstream installer). Add `KOKORO_AUTO_INSTALL=1` to allow it to `brew`/`apt` the prereqs, or `--sibling` to clone `../kokoro_runtime` next to this project instead of the default `~/.kokoro/src`.
+- `./scripts/regen-narration.sh` — regenerates the 10 showcase narrations against a running server (change voice with `VOICE=bm_george`).
+
+To generate one custom clip from any text:
+```bash
+curl -X POST http://127.0.0.1:8770/mcp -H 'Content-Type: application/json' -d '{
+  "jsonrpc":"2.0","method":"tools/call","id":1,
+  "params":{"name":"speak","arguments":{
+    "text":"Once upon a time…",
+    "voice":"af_bella",
+    "format":"mp3",
+    "output_path":"'"$(pwd)"'/audio/once.mp3"
+  }}
+}'
+```
+
+Then reference it from a scene:
+```json
+"audio": { "src": "audio/once.mp3", "volume": 0.9, "fadeIn": 0.2, "fadeOut": 0.5 }
+```
+
+Every Kokoro voice preserves punctuation-driven pacing — periods slow, ellipses pause, question marks lift the pitch. Write narration the way you'd read it aloud.
+
 ### Raw JSON
 
 ![Raw JSON](screenshots/09-raw-json.png)

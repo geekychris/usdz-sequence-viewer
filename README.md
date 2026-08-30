@@ -51,6 +51,48 @@ npm run build:linux  # → dist/*.AppImage + dist/*.tar.gz
 - `tools/` — utility scripts (Blender USDZ→GLB conversion, Playwright doc capture, headless recording tests)
 - `docs/user-guide.md` — full user guide
 
+## Text-to-speech (optional)
+
+The bundled showcase narrations (`audio/*.mp3`) were generated with **[Kokoro TTS](https://github.com/geekychris/kokoro_runtime)** — a small local Rust server that runs the [Kokoro-82M](https://huggingface.co/hexgrad/Kokoro-82M) speech model via ONNX. Everything runs offline once installed (~340 MB model download).
+
+### Install (one-liner)
+```bash
+./scripts/install-tts.sh
+```
+
+This delegates to Kokoro's own installer, which clones the runtime into `~/.kokoro/src`, downloads the model, builds `kokoro-server` (Rust, ~2–5 min the first time), and starts it on `127.0.0.1:8770`.
+
+If you're missing prereqs (`rust`, `espeak-ng`, `jq`), allow it to install them:
+```bash
+KOKORO_AUTO_INSTALL=1 ./scripts/install-tts.sh
+```
+
+To check out the runtime as a sibling directory next to this project (useful if you want to hack on it):
+```bash
+./scripts/install-tts.sh --sibling      # → ../kokoro_runtime/
+```
+
+### Regenerate the demo narrations
+Once the server is up:
+```bash
+./scripts/regen-narration.sh
+```
+
+Rewrites `audio/intro.mp3`, `audio/superhero.mp3`, … the 10 files referenced by `showcase.json`.
+
+Change the voice with `VOICE=bm_george ./scripts/regen-narration.sh` — pick from `curl -s http://127.0.0.1:8770/voices` (54 voices available).
+
+### Custom narration for your own scenes
+Point `scene.audio.src` at any `.mp3` / `.m4a` / `.wav` you produce. To generate one via the running Kokoro server:
+```bash
+curl -X POST http://127.0.0.1:8770/mcp \
+  -H 'Content-Type: application/json' \
+  -d '{"jsonrpc":"2.0","method":"tools/call","id":1,
+       "params":{"name":"speak","arguments":{
+         "text":"Welcome to the show.","voice":"af_bella","format":"mp3",
+         "output_path":"'"$(pwd)"'/audio/welcome.mp3"}}}'
+```
+
 ## Model conversion
 Three.js's built-in `USDZLoader` only reads **ASCII USDA** files inside a `.usdz` container. Files from AR / iOS tools (including Meshy AI) contain **binary USDC** which the loader silently ignores → invisible model. Convert them to `.glb` with Blender:
 
