@@ -1,8 +1,8 @@
 {
   "name": "Lemming Showcase",
   "loop": true,
-  "background": "models/background.jpg",
-  "floor": "",
+  "background": "models/background_lemming.png",
+  "floor": "models/floor_lemming.png",
   "cameraTransition": { "duration": 1.1, "ease": "easeInOut" },
   "scenes": [
     {
