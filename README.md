@@ -6,6 +6,8 @@ Runs either as a web app (via a tiny local HTTP server) or as a standalone macOS
 
 ![Overview](docs/screenshots/01-overview.png)
 
+📺 **[Watch the 2-minute video tutorial](docs/tutorial.mp4)** — narrated walkthrough of building a project from scratch.
+
 ## Quick start
 
 ### Prerequisites

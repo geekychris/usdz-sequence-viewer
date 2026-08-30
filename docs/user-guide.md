@@ -2,6 +2,8 @@
 
 The USDZ Sequence Viewer is a small 3D presentation tool. You load models, arrange them into scenes, script transforms + camera angles + text + audio, and either play the result live or record it to a video file.
 
+📺 **[Watch the 2-minute video tutorial](tutorial.mp4)** — narrated walkthrough of building a project from scratch.
+
 This guide walks through every part of the app.
 
 - [The layout](#the-layout)
