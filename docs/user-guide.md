@@ -114,6 +114,38 @@ GLB files are usually Y-up (Y is vertical). The viewer sets the world to Z-up (m
 ### Model size
 The viewer auto-fits every model to ~1.8 world units tall, and centers it on X/Y with its base on Z=0. Camera positions in the demo assume this convention. Turn off auto-fit by setting `"autoFit": false` in a scene (only via Raw JSON).
 
+### Backgrounds and floors
+
+Two script-level (or per-scene) settings let you replace the default dark background and floor grid with images:
+
+| Field | Value |
+|---|---|
+| `background` | CSS color (`#101317`) OR a path to an image (`models/background.jpg`). Auto-detected by file extension. |
+| `floor` | Path to an image, e.g. `models/floor.jpg`. Textured across a 20×20 unit ground plane; the debug grid is hidden when set. |
+
+Example (script-level defaults):
+```json
+{
+  "name": "My Animation",
+  "background": "models/background.jpg",
+  "floor": "models/floor.jpg",
+  "scenes": [ ... ]
+}
+```
+
+Per-scene override (a title scene with plain dark background, then the rest of the scenes use the image):
+```json
+"scenes": [
+  { "name": "Title", "background": "#000", "floor": "", ... },
+  { "name": "Scene 2", ... }
+]
+```
+
+- Set `background: ""` (empty string) at scene level to force the default dark colour and override an image inherited from the script.
+- Set `floor: ""` at scene level to remove the floor plane and restore the grid.
+- Any HTML-supported image format works (`.jpg`, `.png`, `.webp`).
+- Both are captured in video recordings — no need for separate compositing.
+
 ---
 
 ## Building a sequence
@@ -375,7 +407,8 @@ Full JSON schema of a script:
 {
   "name": "My Animation",              // shown in HUD, becomes default filename
   "loop": true,                        // restart at scene 1 after the last scene
-  "background": "#0a0d18",             // viewer background color (CSS hex)
+  "background": "#0a0d18",             // color OR image path ("models/bg.jpg")
+  "floor": "models/floor.jpg",         // optional floor image (hides the grid)
   "cameraTransition": {                // default ease for camera between scenes
     "duration": 0.8,
     "ease": "easeInOut"                // "linear" | "easeIn" | "easeOut" | "easeInOut"

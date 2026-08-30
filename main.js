@@ -80,6 +80,79 @@ const grid = new THREE.GridHelper(20, 20, 0x2a303b, 0x1a1e26);
 grid.rotation.x = Math.PI / 2;
 scene.add(grid);
 
+// Optional textured floor + background image
+const textureLoader = new THREE.TextureLoader();
+let floorMesh = null;
+let bgTexture = null;
+
+function isImagePath(s) {
+  return typeof s === 'string' && /\.(jpe?g|png|webp|gif)$/i.test(s);
+}
+
+function setBackground(bg) {
+  // bg can be a CSS color string, a hex number, or an image path
+  if (bgTexture) { bgTexture.dispose(); bgTexture = null; }
+  if (bg == null || bg === '') {
+    scene.background = new THREE.Color(0x101317);
+    return;
+  }
+  if (isImagePath(bg)) {
+    textureLoader.load(
+      bg,
+      (tex) => {
+        tex.colorSpace = THREE.SRGBColorSpace;
+        bgTexture = tex;
+        scene.background = tex;
+      },
+      undefined,
+      (err) => {
+        console.warn('background image failed to load:', bg, err);
+        scene.background = new THREE.Color(0x101317);
+      },
+    );
+  } else {
+    try { scene.background = new THREE.Color(bg); }
+    catch { scene.background = new THREE.Color(0x101317); }
+  }
+}
+
+function setFloor(path, opts = {}) {
+  if (floorMesh) {
+    scene.remove(floorMesh);
+    floorMesh.geometry.dispose();
+    if (floorMesh.material.map) floorMesh.material.map.dispose();
+    floorMesh.material.dispose();
+    floorMesh = null;
+  }
+  // If a custom floor is set, hide the grid helper; otherwise restore it.
+  grid.visible = !path;
+  if (!path) return;
+  const size = opts.size || 20;
+  const repeat = opts.repeat || [1, 1];
+  textureLoader.load(
+    path,
+    (tex) => {
+      tex.colorSpace = THREE.SRGBColorSpace;
+      tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
+      tex.repeat.set(repeat[0], repeat[1]);
+      const geom = new THREE.PlaneGeometry(size, size);
+      const mat = new THREE.MeshStandardMaterial({
+        map: tex,
+        roughness: 0.95,
+        metalness: 0,
+      });
+      floorMesh = new THREE.Mesh(geom, mat);
+      floorMesh.position.z = -0.002;  // just below origin to avoid z-fight with models
+      scene.add(floorMesh);
+    },
+    undefined,
+    (err) => {
+      console.warn('floor image failed to load:', path, err);
+      grid.visible = true;
+    },
+  );
+}
+
 const placeholder = new THREE.Mesh(
   new THREE.BoxGeometry(1, 1, 1),
   new THREE.MeshStandardMaterial({ color: 0x4aa3ff, roughness: 0.4, metalness: 0.1 }),
@@ -584,6 +657,9 @@ async function loadSceneAt(index, { tweenCamera = true } = {}) {
   activeSceneCfg = sc;
   hudSceneEl.textContent = `Scene ${index + 1}/${state.script.scenes.length}${sc.name ? ' — ' + sc.name : ''}`;
   hudModelEl.textContent = sc.model ? basename(sc.model) : '(no model)';
+  // Per-scene background / floor override script defaults.
+  setBackground(sc.background !== undefined ? sc.background : state.script.background);
+  setFloor(sc.floor !== undefined ? sc.floor : state.script.floor);
   applyCamera(sc.camera, { tween: tweenCamera });
 
   if (!sc.model) {
@@ -1661,7 +1737,8 @@ function loadScript(obj) {
   state.player.sceneIndex = 0;
   state.player.sceneTime = 0;
   state.player.playing = false;
-  scene.background = new THREE.Color(state.script.background || 0x101317);
+  setBackground(state.script.background);
+  setFloor(state.script.floor);
   loopCheckboxEl.checked = !!state.script.loop;
   jsonViewEl.value = JSON.stringify(state.script, null, 2);
   renderSceneList();
