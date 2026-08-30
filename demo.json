@@ -1,0 +1,70 @@
+{
+  "name": "Nine Lemmings",
+  "loop": true,
+  "background": "#101317",
+  "scenes": [
+    {
+      "model": "models/Meshy_AI_Builder_Lemming_3D_0830065107_image-to-3d-texture.glb",
+      "duration": 4,
+      "camera": { "position": [3.5, -3.5, 2.5], "lookAt": [0, 0, 0.8], "fov": 40 },
+      "transforms": [ { "type": "rotate", "axis": "z", "degPerSec": 90 } ],
+      "overlays": [ { "text": "The Builder", "position": "bottom", "fadeIn": 0.5, "hold": 2.5, "fadeOut": 0.8 } ]
+    },
+    {
+      "model": "models/Meshy_AI_Chef_Lemming_3D_0830065130_image-to-3d-texture.glb",
+      "duration": 4,
+      "camera": { "position": [3.5, -3.5, 2.5], "lookAt": [0, 0, 0.8], "fov": 40 },
+      "transforms": [ { "type": "rotate", "axis": "z", "degPerSec": 90 } ],
+      "overlays": [ { "text": "The Chef", "position": "bottom", "fadeIn": 0.5, "hold": 2.5, "fadeOut": 0.8 } ]
+    },
+    {
+      "model": "models/Meshy_AI_Manager_Lemming_3D_0830065058_image-to-3d-texture.glb",
+      "duration": 4,
+      "camera": { "position": [3.5, -3.5, 2.5], "lookAt": [0, 0, 0.8], "fov": 40 },
+      "transforms": [ { "type": "rotate", "axis": "z", "degPerSec": 90 } ],
+      "overlays": [ { "text": "The Manager", "position": "bottom", "fadeIn": 0.5, "hold": 2.5, "fadeOut": 0.8 } ]
+    },
+    {
+      "model": "models/Meshy_AI_Mistress_Lemming_3D_0830064956_image-to-3d-texture.glb",
+      "duration": 4,
+      "camera": { "position": [3.5, -3.5, 2.5], "lookAt": [0, 0, 0.8], "fov": 40 },
+      "transforms": [ { "type": "rotate", "axis": "z", "degPerSec": 90 } ],
+      "overlays": [ { "text": "The Mistress", "position": "bottom", "fadeIn": 0.5, "hold": 2.5, "fadeOut": 0.8 } ]
+    },
+    {
+      "model": "models/Meshy_AI_Professor_Lemming_3D_0830065022_image-to-3d-texture.glb",
+      "duration": 4,
+      "camera": { "position": [3.5, -3.5, 2.5], "lookAt": [0, 0, 0.8], "fov": 40 },
+      "transforms": [ { "type": "rotate", "axis": "z", "degPerSec": 90 } ],
+      "overlays": [ { "text": "The Professor", "position": "bottom", "fadeIn": 0.5, "hold": 2.5, "fadeOut": 0.8 } ]
+    },
+    {
+      "model": "models/Meshy_AI_Programmer_Lemming_3D_0830065120_image-to-3d-texture.glb",
+      "duration": 4,
+      "camera": { "position": [3.5, -3.5, 2.5], "lookAt": [0, 0, 0.8], "fov": 40 },
+      "transforms": [ { "type": "rotate", "axis": "z", "degPerSec": 90 } ],
+      "overlays": [ { "text": "The Programmer", "position": "bottom", "fadeIn": 0.5, "hold": 2.5, "fadeOut": 0.8 } ]
+    },
+    {
+      "model": "models/Meshy_AI_Rock_Star_Lemming_3D_0830065035_image-to-3d-texture.glb",
+      "duration": 4,
+      "camera": { "position": [3.5, -3.5, 2.5], "lookAt": [0, 0, 0.8], "fov": 40 },
+      "transforms": [ { "type": "rotate", "axis": "z", "degPerSec": 90 } ],
+      "overlays": [ { "text": "The Rock Star", "position": "bottom", "fadeIn": 0.5, "hold": 2.5, "fadeOut": 0.8 } ]
+    },
+    {
+      "model": "models/Meshy_AI_Superhero_Lemming_3D_0830065006_image-to-3d-texture.glb",
+      "duration": 4,
+      "camera": { "position": [3.5, -3.5, 2.5], "lookAt": [0, 0, 0.8], "fov": 40 },
+      "transforms": [ { "type": "rotate", "axis": "z", "degPerSec": 90 } ],
+      "overlays": [ { "text": "The Superhero", "position": "bottom", "fadeIn": 0.5, "hold": 2.5, "fadeOut": 0.8 } ]
+    },
+    {
+      "model": "models/Meshy_AI_Wizard_Lemming_3D_0830065048_image-to-3d-texture.glb",
+      "duration": 4,
+      "camera": { "position": [3.5, -3.5, 2.5], "lookAt": [0, 0, 0.8], "fov": 40 },
+      "transforms": [ { "type": "rotate", "axis": "z", "degPerSec": 90 } ],
+      "overlays": [ { "text": "The Wizard", "position": "bottom", "fadeIn": 0.5, "hold": 2.5, "fadeOut": 0.8 } ]
+    }
+  ]
+}

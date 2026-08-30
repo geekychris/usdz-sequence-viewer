@@ -1,0 +1,29 @@
+# Dependencies
+node_modules/
+
+# macOS
+.DS_Store
+
+# Electron build output
+dist/
+out/
+
+# Test artifacts
+.test-out/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Autosaved browser state (irrelevant to repo)
+localStorage/
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+
+# Original USDZ assets — the runtime uses the .glb converts (see tools/usdz_to_glb.py).
+# Kept locally but not in git to keep the repo lean (383 MB → 0).
+models/*.usdz
+

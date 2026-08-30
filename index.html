@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>USDZ Sequence Viewer</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "./node_modules/three/build/three.module.js",
+      "three/addons/": "./node_modules/three/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <div id="app">
+    <!-- ============= Viewer ============= -->
+    <div id="viewer">
+      <div id="hud">
+        <div><strong id="hud-scene">—</strong></div>
+        <div id="hud-model"></div>
+      </div>
+      <button id="back-btn" class="btn primary">← Back</button>
+      <button id="exit-present-btn" class="btn" title="Exit fullscreen (Esc)">✕ Exit</button>
+      <div id="hover-label"></div>
+      <div id="loading">Loading…</div>
+      <div id="error-box"></div>
+      <div id="export-panel">
+        <div class="row"><strong>Recording…</strong><span class="chip" id="export-status">0.0 / 0.0s</span></div>
+        <div class="bar"><div id="export-bar"></div></div>
+        <div class="row"><button class="btn danger" id="btn-export-cancel">Cancel</button></div>
+      </div>
+    </div>
+
+    <!-- Record settings dialog -->
+    <div id="record-dialog" class="dialog">
+      <div class="dialog-body">
+        <h2>Export video</h2>
+        <div class="dlg-row">
+          <label>Filename</label>
+          <input type="text" id="record-filename" placeholder="my_animation" />
+        </div>
+        <div class="dlg-row">
+          <label>Format</label>
+          <select id="record-format">
+            <option value="webm">WebM (VP9 + Opus) — recommended</option>
+            <option value="mp4">MP4 (H.264 + AAC)</option>
+          </select>
+        </div>
+        <div class="dlg-row">
+          <label>Framerate</label>
+          <select id="record-fps">
+            <option value="24">24 fps (cinematic)</option>
+            <option value="30" selected>30 fps</option>
+            <option value="60">60 fps (smooth)</option>
+          </select>
+        </div>
+        <div class="dlg-row">
+          <label>Resolution</label>
+          <select id="record-scale">
+            <option value="1" selected>current viewer (1×)</option>
+            <option value="1.5">1.5×</option>
+            <option value="2">2× (may be slow)</option>
+          </select>
+        </div>
+        <div class="dlg-row">
+          <label>Include audio</label>
+          <input type="checkbox" id="record-audio" checked />
+        </div>
+        <div class="dlg-note" id="record-info"></div>
+        <div class="dlg-actions">
+          <button class="btn" id="btn-record-cancel">Cancel</button>
+          <button class="btn primary" id="btn-record-start">Record</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============= Editor ============= -->
+    <div id="editor">
+      <header>
+        <div class="mode-tabs">
+          <button data-mode="sequence" class="mode-tab active">Sequence</button>
+          <button data-mode="gallery"  class="mode-tab">Gallery</button>
+        </div>
+        <span class="spacer"></span>
+        <button class="btn" id="btn-fullscreen" title="Play fullscreen (editor hidden)">▶⛶</button>
+        <button class="btn" id="btn-record" title="Record whole animation to video">🎬</button>
+        <button class="btn" id="btn-import" title="Import script (.json)">Import</button>
+        <button class="btn" id="btn-export" title="Download script (.json)">Export</button>
+        <input id="file-import" type="file" accept="application/json" style="display:none" />
+      </header>
+
+      <!-- ------ Sequence panel ------ -->
+      <div id="panel-sequence" class="mode-panel">
+        <div id="transport">
+          <button class="btn primary" id="btn-play">▶ Play</button>
+          <button class="btn" id="btn-pause">❚❚</button>
+          <button class="btn" id="btn-stop">■</button>
+          <button class="btn" id="btn-prev">◀◀</button>
+          <button class="btn" id="btn-next">▶▶</button>
+          <label class="mini-check"><input type="checkbox" id="chk-loop" /> loop</label>
+          <label class="mini-check"><input type="checkbox" id="chk-mute" /> mute</label>
+          <span class="time" id="time-label">0.0 / 0.0s</span>
+        </div>
+        <div id="timeline"><div id="timeline-fill"></div></div>
+
+        <div id="editor-scroll">
+          <div class="scene-list" id="scene-list"></div>
+          <div style="padding: 4px 6px 8px;">
+            <button class="add-btn" id="btn-add-scene">+ Add scene</button>
+          </div>
+
+          <div class="section" id="section-scene">
+            <div class="section-head" data-target="section-scene"><span class="caret">▾</span>Scene</div>
+            <div class="section-body" id="scene-form">
+              <div class="empty-hint">Select a scene to edit</div>
+            </div>
+          </div>
+
+          <div class="section collapsed" id="section-json">
+            <div class="section-head" data-target="section-json"><span class="caret">▸</span>Raw JSON</div>
+            <div class="section-body">
+              <textarea id="json-view" spellcheck="false"></textarea>
+              <div id="json-error"></div>
+              <button class="btn" id="btn-apply-json">Apply JSON</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ------ Gallery panel ------ -->
+      <div id="panel-gallery" class="mode-panel" style="display:none;">
+        <div class="mode-info">
+          <h2>🖼 Gallery mode</h2>
+          <p>All models are shown on a 3D grid. Click one to enter <strong>Detail mode</strong> with pre-programmed transforms.</p>
+          <div class="mode-actions">
+            <button class="btn primary" id="btn-gallery-reload">Reload all models</button>
+          </div>
+          <div class="mode-status" id="gallery-status"></div>
+        </div>
+      </div>
+
+      <!-- ------ Detail panel ------ -->
+      <div id="panel-detail" class="mode-panel" style="display:none;">
+        <div class="mode-info">
+          <h2>🎯 Detail mode</h2>
+          <p id="detail-info">—</p>
+          <div class="mode-actions">
+            <button class="btn primary" id="btn-detail-back">← Back to Gallery</button>
+          </div>
+          <div class="mode-status" style="margin-top:16px;">
+            <label class="mini-check" style="justify-content:center;">
+              <input type="checkbox" id="chk-detail-orbit" checked /> camera slowly orbits
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+{
+  "name": "usdz-sequence-viewer",
+  "version": "0.1.0",
+  "private": true,
+  "description": "USDZ viewer with sequence editor, gallery, and detail mode.",
+  "main": "electron/main.js",
+  "scripts": {
+    "start": "electron .",
+    "start:web": "python3 -m http.server 8765",
+    "build": "electron-builder",
+    "build:mac": "electron-builder --mac",
+    "build:win": "electron-builder --win",
+    "build:linux": "electron-builder --linux",
+    "build:dir": "electron-builder --dir"
+  },
+  "devDependencies": {
+    "electron": "^32.2.0",
+    "electron-builder": "^25.1.8"
+  },
+  "dependencies": {
+    "three": "0.164.1"
+  },
+  "build": {
+    "appId": "com.chris.usdz-sequence-viewer",
+    "productName": "USDZ Sequence Viewer",
+    "asar": true,
+    "files": [
+      "electron/**/*",
+      "index.html",
+      "main.js",
+      "styles.css",
+      "demo.json",
+      "manifest.json",
+      "models/**/*",
+      "node_modules/three/build/**/*",
+      "node_modules/three/examples/jsm/**/*",
+      "!node_modules/**/{README,readme,CHANGELOG,LICENSE,LICENCE,license}*",
+      "!node_modules/**/{test,tests,__tests__,docs,examples/js}/**/*",
+      "!**/*.map"
+    ],
+    "asarUnpack": [
+      "models/**/*"
+    ],
+    "mac": {
+      "target": ["dmg", "zip"],
+      "category": "public.app-category.graphics-design"
+    },
+    "win": {
+      "target": ["nsis", "zip"]
+    },
+    "linux": {
+      "target": ["AppImage", "tar.gz"]
+    }
+  }
+}

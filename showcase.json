@@ -1,0 +1,152 @@
+{
+  "name": "Lemming Showcase",
+  "loop": true,
+  "background": "#0a0d18",
+  "cameraTransition": { "duration": 1.1, "ease": "easeInOut" },
+  "scenes": [
+    {
+      "name": "Intro",
+      "model": "models/Meshy_AI_Manager_Lemming_3D_0830065058_image-to-3d-texture.glb",
+      "duration": 6,
+      "camera": { "position": [0, -5, 2.5], "lookAt": [0, 0, 0.9], "fov": 38 },
+      "transforms": [
+        { "type": "rotate", "axis": "z", "degPerSec": 55 }
+      ],
+      "overlays": [
+        { "text": "Meet the Lemmings", "position": "center", "start": 0.4, "fadeIn": 0.8, "hold": 2.4, "fadeOut": 1.0, "fontSize": 52 },
+        { "text": "a small cast of characters", "position": "bottom", "start": 3.0, "fadeIn": 0.5, "hold": 1.8, "fadeOut": 0.7, "fontSize": 20, "color": "#8a93a3" }
+      ],
+      "audio": { "src": "audio/intro.mp3", "volume": 0.9, "fadeIn": 0.2, "fadeOut": 0.6 }
+    },
+    {
+      "name": "Superhero",
+      "model": "models/Meshy_AI_Superhero_Lemming_3D_0830065006_image-to-3d-texture.glb",
+      "duration": 4.5,
+      "camera": { "position": [3, -3, 4.5], "lookAt": [0, 0, 1.0], "fov": 42 },
+      "transforms": [
+        { "type": "rotate", "axis": "z", "degPerSec": 180 },
+        { "type": "scaleTo", "from": 1.0, "to": 1.12, "start": 0.3, "duration": 0.4, "ease": "easeOut" },
+        { "type": "scaleTo", "from": 1.12, "to": 1.0, "start": 0.7, "duration": 0.5, "ease": "easeIn" }
+      ],
+      "overlays": [
+        { "text": "The Superhero", "position": "top", "start": 0.4, "fadeIn": 0.5, "hold": 3.0, "fadeOut": 0.6, "fontSize": 40, "color": "#ffd166" }
+      ],
+      "audio": { "src": "audio/superhero.mp3", "volume": 0.95, "fadeIn": 0.15, "fadeOut": 0.4, "start": 0.2 }
+    },
+    {
+      "name": "Wizard",
+      "model": "models/Meshy_AI_Wizard_Lemming_3D_0830065048_image-to-3d-texture.glb",
+      "duration": 5,
+      "camera": { "position": [5, 0, 1.6], "lookAt": [0, 0, 0.9], "fov": 36 },
+      "transforms": [
+        { "type": "rotate", "axis": "z", "degPerSec": 60 }
+      ],
+      "overlays": [
+        { "text": "The Wizard", "position": "bottom", "start": 0.4, "fadeIn": 0.7, "hold": 3.2, "fadeOut": 0.7, "fontSize": 38, "color": "#c084fc" },
+        { "text": "✨ knows a thing or two", "position": "top", "start": 1.6, "fadeIn": 0.5, "hold": 2.4, "fadeOut": 0.6, "fontSize": 18, "color": "#c084fc" }
+      ],
+      "audio": { "src": "audio/wizard.mp3", "volume": 0.9, "fadeIn": 0.15, "fadeOut": 0.5, "start": 0.3 }
+    },
+    {
+      "name": "Rock Star",
+      "model": "models/Meshy_AI_Rock_Star_Lemming_3D_0830065035_image-to-3d-texture.glb",
+      "duration": 4.5,
+      "camera": { "position": [0, -4.5, 0.9], "lookAt": [0, 0, 1.2], "fov": 40 },
+      "transforms": [
+        { "type": "rotate", "axis": "z", "degPerSec": 240 }
+      ],
+      "overlays": [
+        { "text": "Rock on!", "position": "center", "start": 0.3, "fadeIn": 0.3, "hold": 1.4, "fadeOut": 0.6, "fontSize": 56, "color": "#ff5470" },
+        { "text": "The Rock Star", "position": "bottom", "start": 2.4, "fadeIn": 0.5, "hold": 1.4, "fadeOut": 0.6, "fontSize": 30 }
+      ],
+      "audio": { "src": "audio/rockstar.mp3", "volume": 1.0, "fadeIn": 0.1, "fadeOut": 0.4, "start": 0.2 }
+    },
+    {
+      "name": "Chef",
+      "model": "models/Meshy_AI_Chef_Lemming_3D_0830065130_image-to-3d-texture.glb",
+      "duration": 5,
+      "camera": { "position": [3.5, -3.5, 2.5], "lookAt": [0, 0, 0.9], "fov": 40 },
+      "transforms": [
+        { "type": "rotate", "axis": "z", "degPerSec": 90 },
+        { "type": "translateTo", "from": [0, 0, 0], "to": [0, 0, 0.4], "start": 0.8, "duration": 0.35, "ease": "easeOut" },
+        { "type": "translateTo", "from": [0, 0, 0.4], "to": [0, 0, 0], "start": 1.15, "duration": 0.35, "ease": "easeIn" }
+      ],
+      "overlays": [
+        { "text": "The Chef", "position": "bottom", "start": 0.4, "fadeIn": 0.6, "hold": 3.5, "fadeOut": 0.6, "fontSize": 38, "color": "#ffb454" }
+      ],
+      "audio": { "src": "audio/chef.mp3", "volume": 0.95, "fadeIn": 0.15, "fadeOut": 0.5, "start": 0.3 }
+    },
+    {
+      "name": "Professor",
+      "model": "models/Meshy_AI_Professor_Lemming_3D_0830065022_image-to-3d-texture.glb",
+      "duration": 5,
+      "camera": { "position": [-3, -3, 0.8], "lookAt": [0, 0, 1.2], "fov": 44 },
+      "transforms": [
+        { "type": "rotate", "axis": "z", "degPerSec": 45 }
+      ],
+      "overlays": [
+        { "text": "The Professor", "position": "bottom", "start": 0.4, "fadeIn": 0.7, "hold": 3.4, "fadeOut": 0.6, "fontSize": 38, "color": "#7cc0ff" },
+        { "text": "“A lemming a day…”", "position": "top", "start": 1.4, "fadeIn": 0.6, "hold": 2.4, "fadeOut": 0.7, "fontSize": 18, "color": "#7cc0ff" }
+      ],
+      "audio": { "src": "audio/professor.mp3", "volume": 0.9, "fadeIn": 0.15, "fadeOut": 0.5, "start": 0.3 }
+    },
+    {
+      "name": "Programmer",
+      "model": "models/Meshy_AI_Programmer_Lemming_3D_0830065120_image-to-3d-texture.glb",
+      "duration": 4.5,
+      "camera": { "position": [0, -4, 2.2], "lookAt": [0, 0, 0.9], "fov": 38 },
+      "transforms": [
+        { "type": "rotate", "axis": "z", "degPerSec": 120 }
+      ],
+      "overlays": [
+        { "text": "The Programmer", "position": "bottom", "start": 0.4, "fadeIn": 0.6, "hold": 3.0, "fadeOut": 0.6, "fontSize": 38, "color": "#7ad39a" },
+        { "text": "// TODO: sleep", "position": "top", "start": 1.4, "fadeIn": 0.4, "hold": 2.0, "fadeOut": 0.6, "fontSize": 16, "color": "#7ad39a" }
+      ],
+      "audio": { "src": "audio/programmer.mp3", "volume": 0.9, "fadeIn": 0.15, "fadeOut": 0.4, "start": 0.3 }
+    },
+    {
+      "name": "Builder",
+      "model": "models/Meshy_AI_Builder_Lemming_3D_0830065107_image-to-3d-texture.glb",
+      "duration": 4.5,
+      "camera": { "position": [4, -1.5, 4.5], "lookAt": [0, 0, 0.9], "fov": 40 },
+      "transforms": [
+        { "type": "rotate", "axis": "z", "degPerSec": 90 },
+        { "type": "scaleTo", "from": 1.0, "to": 1.08, "start": 1.0, "duration": 0.3 },
+        { "type": "scaleTo", "from": 1.08, "to": 1.0, "start": 1.3, "duration": 0.3 },
+        { "type": "scaleTo", "from": 1.0, "to": 1.08, "start": 2.0, "duration": 0.3 },
+        { "type": "scaleTo", "from": 1.08, "to": 1.0, "start": 2.3, "duration": 0.3 }
+      ],
+      "overlays": [
+        { "text": "The Builder", "position": "bottom", "start": 0.4, "fadeIn": 0.6, "hold": 3.0, "fadeOut": 0.6, "fontSize": 38, "color": "#f0a04b" }
+      ],
+      "audio": { "src": "audio/builder.mp3", "volume": 0.95, "fadeIn": 0.1, "fadeOut": 0.4, "start": 0.2 }
+    },
+    {
+      "name": "Mistress",
+      "model": "models/Meshy_AI_Mistress_Lemming_3D_0830064956_image-to-3d-texture.glb",
+      "duration": 5,
+      "camera": { "position": [-3, -3.5, 1.2], "lookAt": [0, 0, 1.0], "fov": 40 },
+      "transforms": [
+        { "type": "rotate", "axis": "z", "degPerSec": 70 }
+      ],
+      "overlays": [
+        { "text": "The Mistress", "position": "bottom", "start": 0.4, "fadeIn": 0.7, "hold": 3.5, "fadeOut": 0.7, "fontSize": 38, "color": "#e05a9a" }
+      ],
+      "audio": { "src": "audio/mistress.mp3", "volume": 0.95, "fadeIn": 0.15, "fadeOut": 0.5, "start": 0.4 }
+    },
+    {
+      "name": "Outro",
+      "model": "models/Meshy_AI_Manager_Lemming_3D_0830065058_image-to-3d-texture.glb",
+      "duration": 5,
+      "camera": { "position": [0, -6, 3.5], "lookAt": [0, 0, 0.9], "fov": 34 },
+      "transforms": [
+        { "type": "rotate", "axis": "z", "degPerSec": 40 }
+      ],
+      "overlays": [
+        { "text": "…and one to rule them all", "position": "top", "start": 0.5, "fadeIn": 0.8, "hold": 2.4, "fadeOut": 0.8, "fontSize": 22, "color": "#8a93a3" },
+        { "text": "Fin", "position": "center", "start": 2.6, "fadeIn": 0.7, "hold": 1.6, "fadeOut": 0.9, "fontSize": 64 }
+      ],
+      "audio": { "src": "audio/outro.mp3", "volume": 0.9, "fadeIn": 0.3, "fadeOut": 0.7, "start": 0.3 }
+    }
+  ]
+}

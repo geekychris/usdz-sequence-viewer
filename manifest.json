@@ -1,0 +1,13 @@
+{
+  "models": [
+    { "label": "Builder",    "path": "models/Meshy_AI_Builder_Lemming_3D_0830065107_image-to-3d-texture.glb" },
+    { "label": "Chef",       "path": "models/Meshy_AI_Chef_Lemming_3D_0830065130_image-to-3d-texture.glb" },
+    { "label": "Manager",    "path": "models/Meshy_AI_Manager_Lemming_3D_0830065058_image-to-3d-texture.glb" },
+    { "label": "Mistress",   "path": "models/Meshy_AI_Mistress_Lemming_3D_0830064956_image-to-3d-texture.glb" },
+    { "label": "Professor",  "path": "models/Meshy_AI_Professor_Lemming_3D_0830065022_image-to-3d-texture.glb" },
+    { "label": "Programmer", "path": "models/Meshy_AI_Programmer_Lemming_3D_0830065120_image-to-3d-texture.glb" },
+    { "label": "Rock Star",  "path": "models/Meshy_AI_Rock_Star_Lemming_3D_0830065035_image-to-3d-texture.glb" },
+    { "label": "Superhero",  "path": "models/Meshy_AI_Superhero_Lemming_3D_0830065006_image-to-3d-texture.glb" },
+    { "label": "Wizard",     "path": "models/Meshy_AI_Wizard_Lemming_3D_0830065048_image-to-3d-texture.glb" }
+  ]
+}
