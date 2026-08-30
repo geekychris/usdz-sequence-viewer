@@ -6,11 +6,11 @@ Runs either as a web app (via a tiny local HTTP server) or as a standalone macOS
 
 ![Overview](docs/screenshots/01-overview.png)
 
-### 📖 [Read the User Guide](docs/user-guide.md) &nbsp; · &nbsp; 📺 [Watch the 2-min Tutorial](docs/tutorial.mp4)
+### 📖 [Read the User Guide](docs/user-guide.md) &nbsp; · &nbsp; 📺 [Watch the 2-min Tutorial](https://geekychris.github.io/usdz-sequence-viewer/)
 
-[![Watch the tutorial](docs/tutorial-thumb.jpg)](docs/tutorial.mp4)
+[![Watch the tutorial](docs/tutorial-thumb.jpg)](https://geekychris.github.io/usdz-sequence-viewer/)
 
-> Click the thumbnail above to play the narrated walkthrough on GitHub, or [download the MP4](docs/tutorial.mp4?raw=1) to play locally.
+> Click the thumbnail above to play the narrated walkthrough in your browser (via GitHub Pages), or [download the MP4](https://geekychris.github.io/usdz-sequence-viewer/tutorial.mp4) to play locally.
 
 ## Quick start
 
