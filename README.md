@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/logo.png" alt="Usdz Sequence Viewer logo" width="180">
+</p>
+
 # USDZ Sequence Viewer
 
 A 3D model viewer with a scripting engine for sequencing scenes of `.glb` / `.usdz` models. Rotate, translate, and scale models; overlay text with fades; sequence multiple scenes with camera transitions; add audio narration; record the whole thing to WebM/MP4.
